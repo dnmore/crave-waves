@@ -5,7 +5,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
-import './sign-up-page.styles.scss'
+
+import "./sign-up-page.styles.scss";
 
 const initialFormFields = {
   displayName: "",
@@ -17,8 +18,6 @@ const initialFormFields = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
 [REDACTED]
-
-  console.log(formFields);
 
   const resetFormFields = () => {
     setFormFields(initialFormFields);

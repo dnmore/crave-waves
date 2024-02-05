@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { getRedirectResult } from "firebase/auth";
 
 import {
@@ -6,6 +6,7 @@ import {
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+
 
 import './google-sign-in.styles.scss'
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import FormInput from "../../components/form-input/form-input.component";
 
-import './sign-in-form.styles.scss'
+import "./sign-in-form.styles.scss";
 
 const initialFormFields = {
   email: "",
@@ -14,8 +14,6 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
   const { email, password } = formFields;
 
-  console.log(formFields);
-
   const resetFormFields = () => {
     setFormFields(initialFormFields);
   };
@@ -25,11 +23,6 @@ const SignInForm = () => {
 
     try {
 [REDACTED]
-        email,
-        password
-      );
-
-      console.log(response);
 
       resetFormFields();
     } catch (error) {

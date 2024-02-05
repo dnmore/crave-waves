@@ -1,16 +1,22 @@
 .signup-container {
   width: 400px;
-  margin: 20px auto;
+  margin: 0 auto;
 
   button {
     width: 100%;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 10px 20px;
     cursor: pointer;
-    border: transparent;
-    background-color: #b9831f;
-    color: white;
+    border: 1px solid #1d1a18;
+    background-color: white;
+    color: #1d1a18;
     font: inherit;
-    border-radius: 6px;
+    transition: all 0.8s ease-in-out;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #1d1a18;
+      color: white;
+    }
   }
 }
