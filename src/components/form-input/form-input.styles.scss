@@ -8,15 +8,14 @@
   }
 
   input {
+    font: inherit;
     padding: 8px 5px;
     background-color: white;
     border: none;
     border-bottom: 1px solid grey;
-    
 
     &:focus {
       outline: none;
-     
     }
   }
 }

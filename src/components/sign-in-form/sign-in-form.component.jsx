@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import FormInput from "../../components/form-input/form-input.component";
 
+import './sign-in-form.styles.scss'
+
 const initialFormFields = {
   email: "",
   password: "",
@@ -51,8 +53,8 @@ const SignInForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign in with your e-mail and password</h1>
+    <div className="signin-form-container">
+      <h2>Sign in with your e-mail and password</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
 [REDACTED]

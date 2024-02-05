@@ -7,6 +7,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
+import './google-sign-in.styles.scss'
 
 const SignInGoogle = () => {
   useEffect(() => {
@@ -22,10 +23,7 @@ const SignInGoogle = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Sign In with Google </h1>
-      
-
+    <div className="signin-google-container">
       <button onClick={signInWithGoogleRedirect}>Sign in with Google</button>
     </div>
   );
