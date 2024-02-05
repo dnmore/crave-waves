@@ -4,14 +4,9 @@ import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import SignInPage from "./routes/sign-in-page/sign-in-page.component";
 import SignUp from "./routes/sign-up-page/sign-up-page.component";
+import Menu from "./routes/menu/menu.component";
 
-const Menu = () => {
-  return (
-    <div>
-      <h1>Menu</h1>
-    </div>
-  );
-};
+
 
 const App = () => {
   return (

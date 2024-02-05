@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Chicken Nuggets - 4 pieces",
+    "imageUrl": "https://rb.gy/g60syb",
+    "price": 5.20
+  },
+  {
+    "id": 2,
+    "name": "Chicken Nuggets - 8 pieces",
+    "imageUrl": "https://rb.gy/g60syb",
+    "price": 6.80
+  },
+  {
+    "id": 3,
+    "name": "Nachos",
+    "imageUrl": "https://t.ly/Ea1XR",
+    "price": 5.40
+  },
+  {
+    "id": 4,
+    "name": "Appetizers Mix",
+    "imageUrl": "https://t.ly/CeODy",
+    "price": 11.20
+  }
+]
