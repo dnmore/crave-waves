@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export const MenuTitle = styled.h2 `
 text-transform: uppercase;
-font-size: 20px;
+font-size: 18px;
+
 
 `
 
