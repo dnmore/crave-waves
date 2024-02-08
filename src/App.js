@@ -7,8 +7,6 @@ import SignUp from "./routes/sign-up-page/sign-up-page.component";
 import Menu from "./routes/menu/menu.component";
 import Checkout from "./routes/checkout/checkout.component";
 
-
-
 const App = () => {
   return (
     <Routes>
@@ -17,7 +15,7 @@ const App = () => {
         <Route path="menu" element={<Menu />} />
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="checkout" element={<Checkout/>}/>
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );

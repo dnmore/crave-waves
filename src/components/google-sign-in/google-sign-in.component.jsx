@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 
 import {
@@ -7,8 +7,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
-
-import './google-sign-in.styles.scss'
+import { SignInGoogleContainer, GoogleButton } from "./google-sign-in.styles";
 
 const SignInGoogle = () => {
   useEffect(() => {
@@ -24,9 +23,11 @@ const SignInGoogle = () => {
   }, []);
 
   return (
-    <div className="signin-google-container">
-      <button onClick={signInWithGoogleRedirect}>Sign in with Google</button>
-    </div>
+    <SignInGoogleContainer>
+      <GoogleButton onClick={signInWithGoogleRedirect}>
+        Sign in with Google
+      </GoogleButton>
+    </SignInGoogleContainer>
   );
 };
 

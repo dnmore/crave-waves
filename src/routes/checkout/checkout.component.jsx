@@ -2,22 +2,22 @@ import { useContext } from "react";
 
 import { CartContext } from "../../contexts/cart.context";
 
-import "./checkout.styles.scss";
-import CheckoutCard from "./checkout-card/checkout-card.component";
+import { CheckoutContainer, CheckoutBody, Total } from "./checkout.styles";
+import CheckoutCard from "../../components/checkout-card/checkout-card.component";
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
 
   return (
-    <div className="main-container">
-      <div className="checkout-container">
+    <CheckoutContainer>
+      <CheckoutBody>
         {cartItems.map((cartItem) => (
           <CheckoutCard key={cartItem.id} cartItem={cartItem} />
         ))}
-      </div>
+      </CheckoutBody>
 
-      <div className="total">TOTAL: €{(cartTotal).toFixed(2)}</div>
-    </div>
+      <Total>TOTAL: €{(cartTotal).toFixed(2)}</Total>
+    </CheckoutContainer>
   );
 };
 

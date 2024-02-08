@@ -1,14 +1,14 @@
 import SignInGoogle from "../../components/google-sign-in/google-sign-in.component";
 import SignInForm from "../../components/sign-in-form/sign-in-form.component";
 
-import './sign-in-page.styles.scss'
+import { SignInContainer } from "./sign-in-page.styles";
 
 const SignInPage = () => {
   return (
-    <div className="signin-page-container">
+    <SignInContainer>
       <SignInForm />
       <SignInGoogle />
-    </div>
+    </SignInContainer>
   );
 };
 

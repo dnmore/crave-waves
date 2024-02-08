@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import FormInput from "../../components/form-input/form-input.component";
 
-import "./sign-in-form.styles.scss";
+import { SignInFormContainer, SignInButton } from "./sign-in-form.styles";
 
 const initialFormFields = {
   email: "",
@@ -46,7 +46,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="signin-form-container">
+    <SignInFormContainer>
       <h2>Sign in with your e-mail and password</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -67,9 +67,9 @@ const SignInForm = () => {
           value={password}
         />
 
-        <button type="submit">Sign In</button>
+        <SignInButton type="submit">Sign In</SignInButton>
       </form>
-    </div>
+    </SignInFormContainer>
   );
 };
 

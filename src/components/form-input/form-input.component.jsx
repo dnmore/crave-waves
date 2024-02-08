@@ -1,14 +1,12 @@
-import './form-input.styles.scss'
+import { InputContainer, InputLabel, Input } from "./form-input.styles";
 
-const FormInput = ({label, ...otherProps}) => {
+const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className='input-container'>
-        <label>{label}</label>
-      <input className='form-input'
-        {...otherProps}
-      />
-    </div>
+    <InputContainer>
+      <InputLabel>{label}</InputLabel>
+      <Input {...otherProps} />
+    </InputContainer>
   );
 };
 
-export default FormInput
+export default FormInput;
