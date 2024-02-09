@@ -55,7 +55,6 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log("done");
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -68,7 +67,7 @@ export const getCategoriesAndDocuments = async () => {
     acc[title.toLowerCase()] = items;
     return acc;
   }, {});
-  console.log(categoryMap);
+
   return categoryMap;
 };
 export const createUserDocumentFromAuth = async (

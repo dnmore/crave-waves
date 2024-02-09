@@ -14,7 +14,7 @@ const Menu = () => {
       {Object.keys(categoriesMap).map((title) => (
         <Fragment key={title}>
           <MenuTitle>
-            <h2>{title}</h2>
+            {title}
           </MenuTitle>
 
           <MenuContainer>
