@@ -26,7 +26,7 @@ export const CategoryImage = styled.div`
 
 export const CategoryBody = styled.div`
   height: 100px;
-  padding: 0 30px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
