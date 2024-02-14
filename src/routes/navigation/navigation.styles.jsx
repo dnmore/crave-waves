@@ -13,6 +13,12 @@ export const NavigationContainer = styled.div`
   background-color: white;
   z-index: 5;
   opacity: 0.8;
+
+  @media screen and (max-width: 768px){
+    height: 80px;
+    display: grid;
+    place-items: center;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -36,6 +42,10 @@ export const NavLinks = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 768px){
+    width: 100%;
+  }
   
 `;
 
@@ -45,4 +55,9 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-size: 16px;
+
+  @media screen and (max-width: 768px){
+    padding: 5px;
+    font-size: 12px;
+  }
 `;
