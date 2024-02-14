@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
 export const SignupContainer = styled.div`
-  width: 400px;
-  margin: 0 auto;
+width: 30%;
+margin: auto;
+
+@media screen and (max-width: 768px){
+  width: 80%;
+  margin: auto;
+}
 `;
 
 export const SignupButton = styled.button`

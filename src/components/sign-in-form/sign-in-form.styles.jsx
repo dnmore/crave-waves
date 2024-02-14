@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
 export const SignInFormContainer = styled.div`
-  width: 400px;
+  width: 30%;
+  margin: auto;
+
+  @media screen and (max-width: 768px){
+    width: 80%;
+    margin: auto;
+  }
 `;
 export const SignInButton = styled.button`
   width: 100%;
