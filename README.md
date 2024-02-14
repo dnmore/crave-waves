@@ -13,6 +13,7 @@ React Restaurant App where users can
 * Firebase
 * Styled components
 
+## View the App (Hosted on Netlify)
 
-
+[CraveWaves](https://cravewaves.netlify.app/)
 
