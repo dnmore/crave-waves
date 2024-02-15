@@ -10,6 +10,7 @@ React Restaurant App where users can
 ## Stack
 
 * React
+* SASS
 * Firebase
 * Styled components
 
