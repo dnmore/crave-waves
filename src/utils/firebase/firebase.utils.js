@@ -20,13 +20,15 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+require("dotenv").config();
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDYNF29Fu802S09vDTy7PFQJlR1ijTURRU",
-  authDomain: "crave-waves-db.firebaseapp.com",
-  projectId: "crave-waves-db",
-  storageBucket: "crave-waves-db.appspot.com",
-  messagingSenderId: "681937636175",
-  appId: "1:681937636175:web:10a856766a9de16cf8933a",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
