@@ -1,6 +1,6 @@
-# React Restaurant
+# Cravewaves
 
-React Restaurant application built using React and Firebase
+Restaurant application built using React and Firebase.
 
 
 ## Features
