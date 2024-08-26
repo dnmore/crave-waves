@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 [REDACTED]
 
 import FormInput from "../../components/form-input/form-input.component";
@@ -13,6 +14,7 @@ const initialFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
   const { email, password } = formFields;
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(initialFormFields);
@@ -25,6 +27,7 @@ const SignInForm = () => {
 [REDACTED]
 
       resetFormFields();
+      navigate("/");
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":

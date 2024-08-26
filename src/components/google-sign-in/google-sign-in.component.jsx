@@ -1,32 +1,23 @@
-import { useEffect } from "react";
-import { getRedirectResult } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import {
-  auth,
-  signInWithGoogleRedirect,
+  signInWithGooglePopup,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 import { SignInGoogleContainer, GoogleButton } from "./google-sign-in.styles";
 
 const SignInGoogle = () => {
-  useEffect(() => {
-    async function fetchData() {
-      const response = await getRedirectResult(auth);
-      if (response) {
-        const userDocRef = await createUserDocumentFromAuth(response.user);
-        console.log(userDocRef);
-      }
-    }
-
-    fetchData();
-  }, []);
+  const navigate = useNavigate();
+  const logGoogleUser = async () => {
+    const { user } = await signInWithGooglePopup();
+    await createUserDocumentFromAuth(user);
+    navigate("/");
+  };
 
   return (
     <SignInGoogleContainer>
-      <GoogleButton onClick={signInWithGoogleRedirect}>
-        Sign in with Google
-      </GoogleButton>
+      <GoogleButton onClick={logGoogleUser}>Sign in with Google</GoogleButton>
     </SignInGoogleContainer>
   );
 };
