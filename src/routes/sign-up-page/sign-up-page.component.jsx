@@ -58,6 +58,7 @@ const SignUp = () => {
 [REDACTED]
 [REDACTED]
 [REDACTED]
+[REDACTED]
 
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => error === "");
@@ -70,6 +71,9 @@ const SignUp = () => {
 
     try {
 [REDACTED]
+        email,
+        password
+      );
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
@@ -113,7 +117,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.displayName && <p>{errors.displayName}</p>}
+            {errors.displayName && <span>{errors.displayName}</span>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
@@ -126,7 +130,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <span>{errors.email}</span>}
           </InputWrapper>
         </FormControl>
         <FormControl>
@@ -141,7 +145,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && <span>{errors.password}</span>}
           </InputWrapper>
           <InputWrapper>
             <FormInput

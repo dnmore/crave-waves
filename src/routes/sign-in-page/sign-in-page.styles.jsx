@@ -20,14 +20,17 @@ export const SignInContainer = styled.div`
   form {
   max-width: 25rem;
   margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    place-items:center;
-      }
+  padding: 0 2rem;
+  display: grid;
+  place-items:center;
 
-    
-  }
-  }
+  span {
+   color: #e94a8a;
+   font-size: 13px;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    }
+      
 
   @media screen and (min-width: 768px) {
     padding: 8rem 5rem;

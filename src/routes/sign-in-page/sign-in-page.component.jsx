@@ -16,17 +16,48 @@ const initialFormFields = {
   password: "",
 };
 
+const initialErrors = {
+  displayName: "",
+  email: "",
+  password: "",
+[REDACTED]
+};
+
 const SignInPage = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
   const { email, password } = formFields;
   const navigate = useNavigate();
+  const [errors, setErrors] = useState(initialErrors);
+
+  const variants = {
+    error: {
+      borderColor: "#E94A8A",
+      x: [-10, 0, 10, 0],
+    },
+    valid: { borderColor: "#282925" },
+  };
 
   const resetFormFields = () => {
     setFormFields(initialFormFields);
+    setErrors(initialErrors);
+  };
+
+  const validateFields = () => {
+    const newErrors = { ...initialErrors };
+
+[REDACTED]
+[REDACTED]
+    else if (password.length < 8)
+[REDACTED]
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every((error) => error === "");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateFields()) return;
 
     try {
 [REDACTED]
@@ -34,15 +65,14 @@ const SignInPage = () => {
       resetFormFields();
       navigate("/");
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("no user associated with this email");
-          break;
-        default:
-          console.log(error);
+      if (error.code === "auth/invalid-credential") {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "incorrect email or password",
+          password: "incorrect email or password",
+        }));
+      } else {
+        console.log(error);
       }
     }
   };
@@ -51,6 +81,7 @@ const SignInPage = () => {
     const { name, value } = e.target;
 
     setFormFields({ ...formFields, [name]: value });
+    setErrors({ ...errors, [name]: "" });
   };
 
   return (
@@ -61,20 +92,26 @@ const SignInPage = () => {
         <FormInput
 [REDACTED]
           type="email"
-          required
           onChange={handleChangeHandler}
           name="email"
           value={email}
+          animate={errors.email ? "error" : "valid"}
+          variants={variants}
+          transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
         />
+        {errors.email && <span>{errors.email}</span>}
 
         <FormInput
 [REDACTED]
           type="password"
-          required
           onChange={handleChangeHandler}
           name="password"
           value={password}
+          animate={errors.password ? "error" : "valid"}
+          variants={variants}
+          transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
         />
+        {errors.password && <span>{errors.password}</span>}
         <ActionsButtons>
           <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">
             Sign In
@@ -82,6 +119,7 @@ const SignInPage = () => {
           <p>OR</p>
           <SignInGoogle />
         </ActionsButtons>
+        
       </form>
     </SignInContainer>
   );
