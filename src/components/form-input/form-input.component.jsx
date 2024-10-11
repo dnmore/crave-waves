@@ -4,7 +4,7 @@ const FormInput = ({ label, ...otherProps }) => {
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <Input {...otherProps} />
+      <Input whileFocus={{ scale: 1.05 }} {...otherProps} />
     </InputContainer>
   );
 };

@@ -3,12 +3,11 @@ import { CartContext } from "../../contexts/cart.context";
 
 import {
   ProductCardContainer,
-  ProductImage,
   ProductBody,
-  Name,
-  Price,
-  ProductButton,
+  ProductImage,
 } from "./product-card.styles";
+
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
@@ -17,15 +16,24 @@ const ProductCard = ({ product }) => {
   const addProductToCart = () => addItemToCart(product);
 
   return (
-    <ProductCardContainer>
+    <ProductCardContainer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+    >
       <ProductImage>
         <img src={imageUrl} alt={`${name}`} />
       </ProductImage>
 
       <ProductBody>
-        <Name>{name}</Name>
-        <Price>€{price}</Price>
-        <ProductButton onClick={addProductToCart}>Add to Cart</ProductButton>
+        <h3>{name}</h3>
+        <p>€{price.toFixed(2)}</p>
+        <Button
+          buttonType={BUTTON_TYPE_CLASSES.primary}
+          onClick={addProductToCart}
+        >
+          Add to Cart
+        </Button>
       </ProductBody>
     </ProductCardContainer>
   );

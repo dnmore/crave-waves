@@ -4,7 +4,8 @@ import { CartContext } from "../../contexts/cart.context";
 
 import CartItem from "../cart-item/cart-item.component";
 
-import { CartDropdownContainer, CartItems, CartDropdownButton } from "./cart-dropdown.styles";
+import { CartDropdownContainer, CartItems } from "./cart-dropdown.styles";
+import Button, { BUTTON_TYPE_CLASSES} from "../button/button.component";
 
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
@@ -22,7 +23,7 @@ const CartDropdown = () => {
           <p>Empty</p>
         )}
       </CartItems>
-      <CartDropdownButton onClick={goToCheckoutHandler}>CHECKOUT</CartDropdownButton>
+      <Button buttonType={BUTTON_TYPE_CLASSES.accent} onClick={goToCheckoutHandler}>CHECKOUT</Button>
     </CartDropdownContainer>
   );
 };
