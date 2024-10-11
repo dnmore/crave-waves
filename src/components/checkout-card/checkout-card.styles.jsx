@@ -48,18 +48,26 @@ export const CheckoutCardBody = styled.div`
 export const QuantityActions = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
-  font-size: 20px;
+  gap: 10px;
   p {
-    font-size: 16px;
+    background-color: transparent;
+    color: #333333;
+    font-size: 20px;
+    border: 2px solid #333333;
+    padding: 2px 15px;
+    border-radius: 20px;
   }
 `;
 
 export const QuantityButton = styled.button`
   border: none;
   background-color: transparent;
-  font: inherit;
-  font-weight: bold;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
   cursor: pointer;
+  color: #333333;
+
+  &:hover {
+  opacity: 85%}
 `;
