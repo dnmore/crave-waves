@@ -43,9 +43,10 @@ export const InputWrapper = styled.div`
   margin-bottom: 20px;
  
 
-  p {
+  span {
     color: #e94a8a;
     margin-top: -15px;
+    font-size: 13px;
     
 
   }

@@ -55,7 +55,8 @@ const SignUp = () => {
     if (!password) newErrors.password = "Password is required";
     else if (password.length < 8)
       newErrors.password = "Password must be at least 8 characters";
-    if (!confirmPassword) newErrors.confirmPassword = "Please confirm your password";
+    if (!confirmPassword)
+      newErrors.confirmPassword = "Please confirm your password";
     else if (confirmPassword !== password)
       newErrors.confirmPassword = "Passwords do not match";
 
@@ -69,7 +70,10 @@ const SignUp = () => {
     if (!validateFields()) return; // Don't proceed if validation fails
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password);
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
@@ -113,7 +117,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.displayName && <p>{errors.displayName}</p>}
+            {errors.displayName && <span>{errors.displayName}</span>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
@@ -126,7 +130,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <span>{errors.email}</span>}
           </InputWrapper>
         </FormControl>
         <FormControl>
@@ -141,7 +145,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && <span>{errors.password}</span>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
@@ -154,7 +158,7 @@ const SignUp = () => {
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
           </InputWrapper>
         </FormControl>
 
