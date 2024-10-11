@@ -5,7 +5,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
-import { SignInGoogleContainer, GoogleButton } from "./google-sign-in.styles";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const SignInGoogle = () => {
   const navigate = useNavigate();
@@ -16,9 +16,9 @@ const SignInGoogle = () => {
   };
 
   return (
-    <SignInGoogleContainer>
-      <GoogleButton onClick={logGoogleUser}>Sign in with Google</GoogleButton>
-    </SignInGoogleContainer>
+    <Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={logGoogleUser}>
+      Sign in with Google
+    </Button>
   );
 };
 

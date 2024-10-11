@@ -1,19 +1,23 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ProductCardContainer = styled.div`
-  min-width: 40%;
-  height: 240px;
-  flex: 1 auto;
+export const ProductCardContainer = styled(motion.div)`
+  width: 100%;
+  height: 350px;
   display: flex;
-  margin: 0 7.5px 15px;
+  flex-direction: column;
+  margin: 5px auto;
   overflow: hidden;
-  cursor: pointer;
-  transition: opacity 1s;
+  border: 1px solid #e0e0e0;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 
-  &:hover {
-    opacity: 0.8;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    
+    
   }
 `;
+
 export const ProductImage = styled.div`
   overflow: hidden;
   height: 100%;
@@ -29,41 +33,20 @@ export const ProductImage = styled.div`
 export const ProductBody = styled.div`
   display: flex;
   flex-direction: column;
-  place-items: left;
-  text-align: center;
-  padding: 10px;
-  position: absolute;
-  width: 85px;
-  background-color: #d08a08;
-  transition: transform 0.5s;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc107;
+  padding: 1rem 2rem;
+  color: #333333;
 
-  &:hover {
-    transform: translateY(10px);
+  h3 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
   }
-`;
 
-export const Name = styled.span`
-  text-transform: uppercase;
-  font-size: 16px;
-`;
-export const Price = styled.span`
-  font-size: 14px;
-  font-weight: bold;
-`;
-
-export const ProductButton = styled.button`
-  padding: 5px 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  border: 1px solid black;
-  background-color: black;
-  color: white;
-  font: inherit;
-  font-size: 14px;
-  text-transform: uppercase;
-  transition: all 0.5s ease-in-out;
-
-  &:hover {
-    opacity: 0.75;
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Loader = styled.div`
-  background-color: #ecf0f1;
+  background-color: #E0E0E0;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -17,7 +17,8 @@ export const Loader = styled.div`
 
 export const LoaderElement = styled.span`
   border-radius: 100%;
-  border: 5px solid #555;
+  border: 5px solid #4CAF50;
+  background-color: #4CAF50;
   margin: calc(5px * 2);
 
   &:nth-child(1) {

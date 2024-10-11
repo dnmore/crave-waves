@@ -2,11 +2,13 @@ import { useContext } from "react";
 
 import { CartContext } from "../../contexts/cart.context";
 
+
+
 import {
   CheckoutCardContainer,
   CheckoutCardImage,
   CheckoutCardBody,
-  Quantity,
+  QuantityActions,
   QuantityButton,
 } from "./checkout-card.styles";
 
@@ -20,20 +22,22 @@ const CheckoutCard = ({ cartItem }) => {
         <img src={imageUrl} alt={`${name}`} />
       </CheckoutCardImage>
       <CheckoutCardBody>
-        <p>{name}</p>
-        <span>Price: €{price}</span>
-        <Quantity>
+        <h3>{name}</h3>
+        <span> €{price.toFixed(2)}</span>
+        <QuantityActions>
           <QuantityButton onClick={() => removeItemFromCart(cartItem)}>
-            {" "}
-            &#10094;{" "}
+          &#10094;
           </QuantityButton>
+
           <p>{quantity}</p>
-          <QuantityButton onClick={() => addItemToCart(cartItem)}> &#10095; </QuantityButton>
-          <QuantityButton className="clear" onClick={() => clearItemFromCart(cartItem)}>
-            {" "}
-            &#10005;{" "}
+          <QuantityButton onClick={() => addItemToCart(cartItem)}>
+          &#10095;
           </QuantityButton>
-        </Quantity>
+
+          <QuantityButton onClick={() => clearItemFromCart(cartItem)}>
+          &#10005;
+          </QuantityButton>
+        </QuantityActions>
       </CheckoutCardBody>
     </CheckoutCardContainer>
   );

@@ -2,37 +2,24 @@ import styled from "styled-components";
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 150px;
-  height: 200px;
+  max-width: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 1px solid black;
-  background-color: white;
-  top: 85px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  top: 75px;
   right: 20px;
-  z-index: 5;
+  z-index: 50;
+  
 `;
 
 export const CartItems = styled.div`
-  height: 140px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   overflow: scroll;
-`;
-
-export const CartDropdownButton = styled.button`
-  margin-top: auto;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: 1px solid #d08a08;
-  background-color: #d08a08;
-  color: white;
-  font: inherit;
-  transition: all 0.8s ease-in-out;
-  border-radius: 4px;
-
-  &:hover {
-    opacity: 0.75;
-  }
+  margin-bottom: 20px;
 `;

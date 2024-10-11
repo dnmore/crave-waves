@@ -1,35 +1,24 @@
-import Categories from "../../components/categories/categories.component";
+import hero from "../../assets/crave-hero.png";
 
-const Home = ()=> {
-    const categories = [
-        {
-          id: 1,
-          title: "Appetisers",
-          imageUrl: "https://rb.gy/g60syb",
-        },
-        {
-          id: 2,
-          title: "Burgers",
-          imageUrl: "https://rb.gy/snz7bh",
-        },
-        {
-          id: 3,
-          title: "Sides",
-          imageUrl: "https://rb.gy/7pbjl1",
-        },
-        {
-          id: 4,
-          title: "Desserts",
-          imageUrl: "https://rb.gy/gxnuqx",
-        },
-        {
-          id: 5,
-          title: "Tex Mex",
-          imageUrl: "https://rb.gy/v29fum",
-        },
-      ];
-    
-      return <Categories categories={categories} />;
-}
+import { HeroContainer, HomeContent } from "./home.styles";
+
+const Home = () => {
+  return (
+    <>
+      <HeroContainer
+        style={{ backgroundImage: `url(${hero})` }}
+      ></HeroContainer>
+      <HomeContent>
+        <div>
+          <h3>Explore Our Flavor Packed Menu</h3>
+          <p>
+            From juicy burgers to Tex-Mex delights, nachos, nuggets, and
+            irresistible desserts, satisfy every craving today!
+          </p>
+        </div>
+      </HomeContent>
+    </>
+  );
+};
 
 export default Home;
