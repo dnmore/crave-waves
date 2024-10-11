@@ -5,10 +5,24 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
+import Button, {
+  BUTTON_TYPE_CLASSES,
+} from "../../components/button/button.component";
 
-import { SignupContainer, SignupButton } from "./sign-up-page.styles";
+import {
+  SignupContainer,
+  FormControl,
+  InputWrapper,
+} from "./sign-up-page.styles";
 
 const initialFormFields = {
+  displayName: "",
+  email: "",
+  password: "",
+[REDACTED]
+};
+
+const initialErrors = {
   displayName: "",
   email: "",
   password: "",
@@ -18,83 +32,136 @@ const initialFormFields = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
 [REDACTED]
+  const [errors, setErrors] = useState(initialErrors);
+
+  const variants = {
+    error: {
+      borderColor: "#E94A8A",
+      x: [-10, 0, 10, 0],
+    },
+    valid: { borderColor: "#282925" },
+  };
 
   const resetFormFields = () => {
     setFormFields(initialFormFields);
+    setErrors(initialErrors);
+  };
+
+  const validateFields = () => {
+    const newErrors = { ...initialErrors };
+
+    if (!displayName) newErrors.displayName = "Display name is required";
+[REDACTED]
+[REDACTED]
+    else if (password.length < 8)
+[REDACTED]
+[REDACTED]
+[REDACTED]
+[REDACTED]
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every((error) => error === "");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-[REDACTED]
-      alert("passwords not matching!");
-      return;
-    }
+    if (!validateFields()) return; // Don't proceed if validation fails
 
     try {
 [REDACTED]
-        email,
-        password
-      );
-
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        alert("Cannot create user, email already in use");
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "Cannot create user, email already in use",
+        }));
       } else {
-        console.log("user creation encountered an error", error);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          form: "An error occurred, please try again later",
+        }));
+        console.log("User creation encountered an error", error);
       }
     }
   };
 
-  const handleChangeHandler = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormFields({ ...formFields, [name]: value });
+
+    // Clear error when user starts typing in a specific field
+    setErrors({ ...errors, [name]: "" });
   };
 
   return (
     <SignupContainer>
-     <h2>Don't have an account?</h2>
-      <span>Sign up with your email and password</span>
+      <h3>Don't have an account?</h3>
+      <p>Sign up with your email and password</p>
       <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Display Name"
-          type="text"
-          required
-          onChange={handleChangeHandler}
-          name="displayName"
-          value={displayName}
-        />
+        <FormControl>
+          <InputWrapper>
+            <FormInput
+              label="Display Name"
+              type="text"
+              onChange={handleChange}
+              name="displayName"
+              value={displayName}
+              animate={errors.displayName ? "error" : "valid"}
+              variants={variants}
+              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
+            />
+            {errors.displayName && <p>{errors.displayName}</p>}
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+[REDACTED]
+              type="email"
+              onChange={handleChange}
+              name="email"
+              value={email}
+              animate={errors.email ? "error" : "valid"}
+              variants={variants}
+              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
+            />
+            {errors.email && <p>{errors.email}</p>}
+          </InputWrapper>
+        </FormControl>
+        <FormControl>
+          <InputWrapper>
+            <FormInput
+[REDACTED]
+              type="password"
+              onChange={handleChange}
+              name="password"
+              value={password}
+              animate={errors.password ? "error" : "valid"}
+              variants={variants}
+              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
+            />
+            {errors.password && <p>{errors.password}</p>}
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+[REDACTED]
+              type="password"
+              onChange={handleChange}
+[REDACTED]
+[REDACTED]
+[REDACTED]
+              variants={variants}
+              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
+            />
+[REDACTED]
+          </InputWrapper>
+        </FormControl>
 
-        <FormInput
-[REDACTED]
-          type="email"
-          required
-          onChange={handleChangeHandler}
-          name="email"
-          value={email}
-        />
-
-        <FormInput
-[REDACTED]
-          type="password"
-          required
-          onChange={handleChangeHandler}
-          name="password"
-          value={password}
-        />
-
-        <FormInput
-[REDACTED]
-          type="password"
-          required
-          onChange={handleChangeHandler}
-[REDACTED]
-[REDACTED]
-        />
-        <SignupButton type="submit">Sign Up</SignupButton>
+        <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">
+          Sign Up
+        </Button>
+        {errors.form && <p>{errors.form}</p>}
       </form>
     </SignupContainer>
   );
