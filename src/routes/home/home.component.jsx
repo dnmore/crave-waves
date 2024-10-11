@@ -1,10 +1,14 @@
+import { motion } from "framer-motion";
 import hero from "../../assets/crave-hero.png";
 
 import { HeroContainer, HomeContent } from "./home.styles";
 
 const Home = () => {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+    >
       <HeroContainer
         style={{ backgroundImage: `url(${hero})` }}
       ></HeroContainer>
@@ -17,7 +21,7 @@ const Home = () => {
           </p>
         </div>
       </HomeContent>
-    </>
+    </motion.div>
   );
 };
 

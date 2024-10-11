@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 import { CartContext } from "../../contexts/cart.context";
-
-
+import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 import {
   CheckoutCardContainer,
@@ -25,17 +25,16 @@ const CheckoutCard = ({ cartItem }) => {
         <h3>{name}</h3>
         <span> €{price.toFixed(2)}</span>
         <QuantityActions>
+          <QuantityButton onClick={() => clearItemFromCart(cartItem)}>
+          <FaRegTrashAlt />
+          </QuantityButton>
           <QuantityButton onClick={() => removeItemFromCart(cartItem)}>
-          &#10094;
+            <FaCircleMinus />
           </QuantityButton>
 
           <p>{quantity}</p>
           <QuantityButton onClick={() => addItemToCart(cartItem)}>
-          &#10095;
-          </QuantityButton>
-
-          <QuantityButton onClick={() => clearItemFromCart(cartItem)}>
-          &#10005;
+            <FaCirclePlus />
           </QuantityButton>
         </QuantityActions>
       </CheckoutCardBody>
