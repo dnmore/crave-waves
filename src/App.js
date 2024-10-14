@@ -1,5 +1,8 @@
-import { React, lazy, Suspense } from "react";
+import { React, lazy, Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
+import { setCurrentUser } from "./store/user/userSlice";
 
 import LoadingDots from "./components/loading-dots/loading-dots.component";
 
@@ -17,6 +20,27 @@ const Menu = lazy(() => import("./routes/menu/menu.component"));
 const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+
+        dispatch(
+          setCurrentUser({
+            uid,
+            email,
+            displayName,
+          })
+        );
+      } else {
+        dispatch(setCurrentUser(null));
+      }
+    });
+    return unsubscribe;
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<LoadingDots />}>
       <Routes>
