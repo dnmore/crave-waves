@@ -64,7 +64,7 @@ export const QuantityButton = styled.button`
   background-color: transparent;
   display: flex;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   color: #333333;
 

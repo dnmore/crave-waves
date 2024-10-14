@@ -1,9 +1,15 @@
 import { useContext } from "react";
-
 import { CartContext } from "../../contexts/cart.context";
 
-import { CheckoutContainer, CheckoutBody, Total } from "./checkout.styles";
+import {
+  CheckoutContainer,
+  CheckoutBody,
+  CheckoutPayment,
+} from "./checkout.styles";
 import CheckoutCard from "../../components/checkout-card/checkout-card.component";
+import Button, {
+  BUTTON_TYPE_CLASSES,
+} from "../../components/button/button.component";
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
@@ -15,8 +21,11 @@ const Checkout = () => {
           <CheckoutCard key={cartItem.id} cartItem={cartItem} />
         ))}
       </CheckoutBody>
+      <CheckoutPayment>
+        <span>TOTAL: €{cartTotal.toFixed(2)}</span>
 
-      <Total>TOTAL: €{(cartTotal).toFixed(2)}</Total>
+        <Button buttonType={BUTTON_TYPE_CLASSES.primary}>PAY NOW</Button>
+      </CheckoutPayment>
     </CheckoutContainer>
   );
 };
