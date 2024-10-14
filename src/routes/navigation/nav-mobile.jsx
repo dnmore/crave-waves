@@ -1,12 +1,12 @@
 import { useClickAway } from "react-use";
-import { useContext, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentUser } from "../../store/user/userSlice";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import { UserContext } from "../../contexts/user.context";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { signOutUser, onAuthStateChangedListener } from "../../utils/firebase/firebase.utils";
 
 import { Squeeze as Hamburger } from "hamburger-react";
 
@@ -20,15 +20,23 @@ import {
 } from "./nav-mobile.styles";
 
 const NavMobile = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const ref = useRef(null);
+  const dispatch = useDispatch();
 
   useClickAway(ref, () => setDropdownOpen(false));
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      dispatch(setCurrentUser(user));
+    });
+    return unsubscribe;
+  }, [dispatch]);
+
   return (
-    <MobileMenuContainer  ref={ref}>
+    <MobileMenuContainer ref={ref}>
       <HamburgerContainer>
         <Hamburger
           toggled={isDropdownOpen}
