@@ -1,7 +1,7 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
@@ -16,7 +16,7 @@ import {
 
 const NavDesktop = () => {
   const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   return (
     <NavigationDesktopContainer>

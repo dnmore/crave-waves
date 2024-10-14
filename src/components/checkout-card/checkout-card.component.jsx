@@ -1,6 +1,12 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 
-import { CartContext } from "../../contexts/cart.context";
+// import { CartContext } from "../../contexts/cart.context";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  clearItemFromCart,
+} from "../../store/cart/cartSlice";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 
@@ -14,8 +20,9 @@ import {
 
 const CheckoutCard = ({ cartItem }) => {
   const { name, quantity, imageUrl, price } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } =
-    useContext(CartContext);
+  // const { addItemToCart, removeItemFromCart, clearItemFromCart } =
+  //   useContext(CartContext);
+  const dispatch = useDispatch();
   return (
     <CheckoutCardContainer>
       <CheckoutCardImage>
@@ -25,15 +32,17 @@ const CheckoutCard = ({ cartItem }) => {
         <h3>{name}</h3>
         <span> €{price.toFixed(2)}</span>
         <QuantityActions>
-          <QuantityButton onClick={() => clearItemFromCart(cartItem)}>
-          <FaRegTrashAlt />
+          <QuantityButton onClick={() => dispatch(clearItemFromCart(cartItem))}>
+            <FaRegTrashAlt />
           </QuantityButton>
-          <QuantityButton onClick={() => removeItemFromCart(cartItem)}>
+          <QuantityButton
+            onClick={() => dispatch(removeItemFromCart(cartItem))}
+          >
             <FaCircleMinus />
           </QuantityButton>
 
           <p>{quantity}</p>
-          <QuantityButton onClick={() => addItemToCart(cartItem)}>
+          <QuantityButton onClick={() => dispatch(addItemToCart(cartItem))}>
             <FaCirclePlus />
           </QuantityButton>
         </QuantityActions>
