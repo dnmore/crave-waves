@@ -1,12 +1,11 @@
 import { useClickAway } from "react-use";
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentUser } from "../../store/user/userSlice";
+import { useState,useRef } from "react";
+import { useSelector, } from "react-redux";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import { signOutUser, onAuthStateChangedListener } from "../../utils/firebase/firebase.utils";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import { Squeeze as Hamburger } from "hamburger-react";
 
@@ -24,16 +23,10 @@ const NavMobile = () => {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const ref = useRef(null);
-  const dispatch = useDispatch();
-
+  
   useClickAway(ref, () => setDropdownOpen(false));
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      dispatch(setCurrentUser(user));
-    });
-    return unsubscribe;
-  }, [dispatch]);
+  
 
   return (
     <MobileMenuContainer ref={ref}>

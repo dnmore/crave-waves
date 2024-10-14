@@ -6,10 +6,16 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const CartDropdown = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const currentUser = useSelector((state) => state.user.currentUser)
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
-    navigate("/checkout");
+    if(currentUser){
+      navigate("/checkout");
+    } else {
+      navigate("/sign-in");
+    }
+    
   };
 
   return (
