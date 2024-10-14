@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductCard from "../../components/product-card/product-card.component";
 
 import {MenuContainer, MenuSection, MenuTitle } from "./menu.styles";
-import { fetchCategoriesAsync } from "../../store/cart/categoriesSlice";
+import { fetchCategoriesAsync } from "../../store/categories/categoriesSlice";
 
 const Menu = () => {
   
