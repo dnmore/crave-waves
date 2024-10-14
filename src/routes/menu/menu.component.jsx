@@ -1,13 +1,19 @@
-import { useContext, Fragment } from "react";
+import { useEffect, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import ProductCard from "../../components/product-card/product-card.component";
 
-import { CategoriesContext } from "../../contexts/categories.context";
-
 import {MenuContainer, MenuSection, MenuTitle } from "./menu.styles";
+import { fetchCategoriesAsync } from "../../store/cart/categoriesSlice";
 
 const Menu = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  
+  const dispatch = useDispatch()
+  const categoriesMap = useSelector((state) => state.categories.categoriesMap)
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync())
+  }, [dispatch])
 
   return (
     <MenuContainer>
