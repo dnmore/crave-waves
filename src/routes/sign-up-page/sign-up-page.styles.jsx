@@ -21,7 +21,6 @@ export const SignupContainer = styled.div`
     display: grid;
     place-items: center;
     margin-bottom: 1rem;
-    
   }
 
   @media screen and (min-width: 768px) {
@@ -40,14 +39,10 @@ export const FormControl = styled.div`
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
- 
 
   span {
     color: #e94a8a;
     margin-top: -15px;
     font-size: 13px;
-    
-
   }
 `;

@@ -18,6 +18,8 @@ export const Input = styled(motion.input)`
   padding: 8px 5px;
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
+  width: 250px;
+  height: 50px;
  
 
   &:focus {
