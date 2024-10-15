@@ -7,6 +7,7 @@ import {
 [REDACTED]
   signOut,
   onAuthStateChanged,
+  
 } from "firebase/auth";
 
 import {
@@ -20,8 +21,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-
-
+// Firebase configuration object
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -39,11 +39,11 @@ provider.setCustomParameters({
 });
 
 export const auth = getAuth(app);
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
+// Function to add a collection and its documents to Firestore
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -59,6 +59,7 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
+// Function to retrieve categories and documents from Firestore
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
@@ -72,6 +73,8 @@ export const getCategoriesAndDocuments = async () => {
 
   return categoryMap;
 };
+
+// Create user document in Firestore
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation
@@ -101,19 +104,26 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
+// Create a new user with email and password
 [REDACTED]
   if (!email || !password) return;
 
 [REDACTED]
 };
 
+// Sign in user with email and password
 [REDACTED]
   if (!email || !password) return;
 
 [REDACTED]
 };
 
+// Sign out the user
 export const signOutUser = async () => await signOut(auth);
 
+// Listener for authentication state changes
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+
+

@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
 [REDACTED]
   createUserDocumentFromAuth,
+  
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
@@ -33,6 +36,8 @@ const SignUp = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
 [REDACTED]
   const [errors, setErrors] = useState(initialErrors);
+  const navigate = useNavigate();
+  
 
   const variants = {
     error: {
@@ -74,8 +79,12 @@ const SignUp = () => {
         email,
         password
       );
+     
       await createUserDocumentFromAuth(user, { displayName });
+
+      
       resetFormFields();
+      navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setErrors((prevErrors) => ({
@@ -165,7 +174,7 @@ const SignUp = () => {
         <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">
           Sign Up
         </Button>
-        {errors.form && <p>{errors.form}</p>}
+        {errors.form && <span>{errors.form}</span>}
       </form>
     </SignupContainer>
   );

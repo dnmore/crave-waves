@@ -45,9 +45,13 @@ const NavMobile = () => {
           <NavLinks>
             <NavLink to={"/menu"}>Menu</NavLink>
             {currentUser ? (
-              <NavLink as="span" onClick={signOutUser}>
-                Sign Out
-              </NavLink>
+              <>
+              <NavLink to={"/checkout"}>Checkout</NavLink>
+               <NavLink as="span" onClick={signOutUser}>
+                 Sign Out
+               </NavLink>
+              
+             </>
             ) : (
               <>
                 <NavLink to={"/sign-in"}>Sign In</NavLink>
