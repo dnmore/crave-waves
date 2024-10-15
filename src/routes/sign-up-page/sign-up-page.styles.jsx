@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const SignupContainer = styled.div`
   padding: 6rem 0 2rem 0;
   text-align: center;
-
   color: #333333;
 
   h3 {
@@ -14,6 +13,7 @@ export const SignupContainer = styled.div`
 
   p {
     font-size: 13px;
+    margin: 5px 0;
   }
 
   form {

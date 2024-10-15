@@ -9,7 +9,7 @@ import Button, {
 } from "../../components/button/button.component";
 import SignInGoogle from "../../components/google-sign-in/google-sign-in.component";
 
-import { SignInContainer, ActionsButtons } from "./sign-in-page.styles";
+import { SignInContainer } from "./sign-in-page.styles";
 
 const initialFormFields = {
   email: "",
@@ -112,15 +112,13 @@ const SignInPage = () => {
           transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
         />
         {errors.password && <span>{errors.password}</span>}
-        <ActionsButtons>
-          <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">
-            Sign In
-          </Button>
-          <p>OR</p>
-          <SignInGoogle />
-        </ActionsButtons>
-        
+
+        <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">
+          Sign In
+        </Button>
+        <p>OR</p>
       </form>
+      <SignInGoogle />
     </SignInContainer>
   );
 };
