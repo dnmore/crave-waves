@@ -18,14 +18,45 @@ export const CheckoutBody = styled.div`
   }
 `;
 
-export const CheckoutPayment = styled.div`
+export const CheckoutDetails = styled.div`
+  display: grid;
+  place-items: center;
   padding: 1rem;
+
+  span {
+    color: #e94a8a;
+    display: block;
+    margin: -10px 0 10px 0;
+    font-size: 13px;
+  }
+
+  @media screen and (min-width: 768px) {
+    place-items: start;
+  }
+`;
+
+export const CheckoutAddress = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1rem 0;
+  text-transform: capitalize;
+  font-size: 14px;
+
+  h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+`;
+
+export const CheckoutPayment = styled.div`
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   span {
-  font-weight: bold;
-  font-size: 16px;
+    font-weight: bold;
+    font-size: 16px;
   }
 `;
