@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import FormInput from "../../components/form-input/form-input.component";
 import CheckoutCard from "../../components/checkout-card/checkout-card.component";
+import PaymentForm from "../../components/payment-form/payment-form";
 import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../../components/button/button.component";
@@ -9,7 +10,6 @@ import {
   CheckoutContainer,
   CheckoutBody,
   CheckoutDetails,
-  
   CheckoutPayment,
   CheckoutAddress,
 } from "./checkout.styles";
@@ -159,7 +159,7 @@ const Checkout = () => {
       <CheckoutPayment>
         <span>TOTAL: €{cartTotal.toFixed(2)}</span>
 
-        <Button buttonType={BUTTON_TYPE_CLASSES.primary}>PAY NOW</Button>
+        <PaymentForm fullName={fullName} />
       </CheckoutPayment>
     </CheckoutContainer>
   );

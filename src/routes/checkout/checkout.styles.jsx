@@ -51,12 +51,16 @@ export const CheckoutAddress = styled.div`
 
 export const CheckoutPayment = styled.div`
   padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  place-items: center;
+  gap: 20px;
 
   span {
     font-weight: bold;
     font-size: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    place-items: start;
   }
 `;
