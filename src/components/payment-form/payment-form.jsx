@@ -29,11 +29,27 @@ const PaymentForm = (fullName) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ amount: amount * 100 }),
-    }).then((res) => {
-      return res.json();
     });
 
+    const jsonResponse = await response.json();
+
+    if (!jsonResponse.paymentIntent) {
+      console.error(
+        "Payment Intent creation failed:",
+        jsonResponse.error || jsonResponse
+      );
+      alert("Payment intent failed.");
+      setIsProcessingPayment(false);
+      return;
+    }
+
     const clientSecret = response.paymentIntent.client_secret;
+
+    if (!clientSecret) {
+      alert("Failed to create payment intent.");
+      setIsProcessingPayment(false);
+      return;
+    }
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
