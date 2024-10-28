@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const CheckoutContainer = styled.div`
   padding: 8rem 0 2rem 0;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
     padding: 8rem 5rem;
@@ -49,7 +51,7 @@ export const CheckoutAddress = styled.div`
   }
 `;
 
-export const CheckoutPayment = styled.div`
+export const CheckoutPayment = styled(motion.div)`
   padding: 2rem 1rem;
   display: grid;
   place-items: center;

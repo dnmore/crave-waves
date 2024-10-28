@@ -86,13 +86,22 @@ const Checkout = () => {
       <CheckoutDetails>
         <h3>CONFIRM YOUR DETAILS</h3>
         {detailsSaved ? (
-          <CheckoutAddress>
-            <h4>{fullName}</h4>
-            <p>{address}</p>
-            <p>{postalCode}</p>
-            <p>{city}</p>
-            <p>{state}</p>
-          </CheckoutAddress>
+          <>
+            <CheckoutAddress>
+              <h4>{fullName}</h4>
+              <p>{address}</p>
+              <p>{postalCode}</p>
+              <p>{city}</p>
+              <p>{state}</p>
+            </CheckoutAddress>
+            <CheckoutPayment
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <PaymentForm fullName={fullName} />
+            </CheckoutPayment>
+          </>
         ) : (
           <form onSubmit={handleSubmit}>
             <FormInput
@@ -156,11 +165,7 @@ const Checkout = () => {
           </form>
         )}
       </CheckoutDetails>
-      <CheckoutPayment>
-        <span>TOTAL: €{cartTotal.toFixed(2)}</span>
-
-        <PaymentForm fullName={fullName} />
-      </CheckoutPayment>
+      <span>TOTAL: €{cartTotal.toFixed(2)}</span>
     </CheckoutContainer>
   );
 };
