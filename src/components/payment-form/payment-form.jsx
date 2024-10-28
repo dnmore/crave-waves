@@ -8,7 +8,8 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { FormContainer } from "./payment-form.styles";
 
 const PaymentForm = (fullName) => {
-  const amount = useSelector((state) => state.cart.cartTotal);
+  const amount = useSelector((state) => state.cart.cartTotal); 
+  console.log("Amount from Redux", amount);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const stripe = useStripe();
@@ -22,13 +23,15 @@ const PaymentForm = (fullName) => {
     }
 
     setIsProcessingPayment(true);
+    const convertedAmount = Math.round(amount * 100);
+    console.log("Converted amount in cents:", convertedAmount); 
 
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: Math.round(amount * 100) }),
+      body: JSON.stringify({ amount: convertedAmount }),
     });
 
     const jsonResponse = await response.json();
