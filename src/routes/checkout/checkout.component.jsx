@@ -159,7 +159,7 @@ const Checkout = () => {
       <CheckoutPayment>
         <span>TOTAL: €{cartTotal.toFixed(2)}</span>
 
-        <PaymentForm fullName={fullName} detailsSaved={detailsSaved} />
+        <PaymentForm fullName={fullName} />
       </CheckoutPayment>
     </CheckoutContainer>
   );
