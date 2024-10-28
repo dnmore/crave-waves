@@ -46,7 +46,7 @@ const PaymentForm = (fullName) => {
       return;
     }
 
-    const clientSecret = response.paymentIntent.client_secret;
+    const clientSecret = jsonResponse.paymentIntent.client_secret;
 
     if (!clientSecret) {
       alert("Failed to create payment intent.");
