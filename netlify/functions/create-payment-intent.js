@@ -5,6 +5,13 @@ exports.handler = async (event) => {
   try {
     const { amount } = JSON.parse(event.body);
 
+    if (!Number.isInteger(amount)) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Invalid amount format." }),
+      };
+    }
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "eur",
@@ -15,11 +22,11 @@ exports.handler = async (event) => {
       body: JSON.stringify({ paymentIntent }),
     };
   } catch (error) {
-    console.error("Stripe Error:", error);
+    console.log("Stripe Error:", error);
 
     return {
       statusCode: 400,
-      body: JSON.stringify({ error }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };

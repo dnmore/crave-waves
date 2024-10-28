@@ -28,7 +28,7 @@ const PaymentForm = (fullName) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: amount * 100 }),
+      body: JSON.stringify({ amount: Math.round(amount * 100) }),
     });
 
     const jsonResponse = await response.json();
