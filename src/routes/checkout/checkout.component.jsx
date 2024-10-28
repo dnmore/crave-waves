@@ -84,7 +84,7 @@ const Checkout = () => {
         ))}
       </CheckoutBody>
       <CheckoutDetails>
-        <h3>Address Details</h3>
+        <h3>CONFIRM YOUR DETAILS</h3>
         {detailsSaved ? (
           <CheckoutAddress>
             <h4>{fullName}</h4>
@@ -159,7 +159,7 @@ const Checkout = () => {
       <CheckoutPayment>
         <span>TOTAL: €{cartTotal.toFixed(2)}</span>
 
-        <PaymentForm fullName={fullName} />
+        <PaymentForm fullName={fullName} detailsSaved={detailsSaved} />
       </CheckoutPayment>
     </CheckoutContainer>
   );

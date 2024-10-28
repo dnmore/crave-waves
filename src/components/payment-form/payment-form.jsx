@@ -7,7 +7,7 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { FormContainer } from "./payment-form.styles";
 
-const PaymentForm = (fullName) => {
+const PaymentForm = (fullName, detailsSaved) => {
   const amount = useSelector((state) => state.cart.cartTotal);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
@@ -17,7 +17,7 @@ const PaymentForm = (fullName) => {
   const paymentHandler = async (e) => {
     e.preventDefault();
 
-    if (!stripe || !elements) {
+    if (!detailsSaved || !stripe || !elements) {
       return;
     }
 
