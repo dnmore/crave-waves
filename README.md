@@ -34,7 +34,7 @@ CraveWaves is a responsive, full-stack restaurant application built to provide u
 
 To get started with CraveWaves:
 
-1.** Clone the Repository and Install Dependencies:**
+1.**Clone the Repository and Install Dependencies:**
 
 
 ```
