@@ -1,16 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-
+import { clearCart } from "../../store/cart/cartSlice";
 import { FormContainer } from "./payment-form.styles";
 
-const PaymentForm = (fullName) => {
-  const amount = useSelector((state) => state.cart.cartTotal); 
-  console.log("Amount from Redux", amount);
+const PaymentForm = ({ fullName }) => {
+  const amount = useSelector((state) => state.cart.cartTotal);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -24,35 +26,21 @@ const PaymentForm = (fullName) => {
 
     setIsProcessingPayment(true);
     const convertedAmount = Math.round(amount * 100);
-    console.log("Converted amount in cents:", convertedAmount); 
 
-    const response = await fetch("/.netlify/functions/create-payment-intent", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount: convertedAmount }),
+    const response = await fetch(
+      "/.netlify/functions/create-payment-intent",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: convertedAmount }),
+      }
+    ).then((res) => {
+      return res.json();
     });
 
-    const jsonResponse = await response.json();
-
-    if (!jsonResponse.paymentIntent) {
-      console.error(
-        "Payment Intent creation failed:",
-        jsonResponse.error || jsonResponse
-      );
-      alert("Payment intent failed.");
-      setIsProcessingPayment(false);
-      return;
-    }
-
-    const clientSecret = jsonResponse.paymentIntent.client_secret;
-
-    if (!clientSecret) {
-      alert("Failed to create payment intent.");
-      setIsProcessingPayment(false);
-      return;
-    }
+    const clientSecret = response.paymentIntent.client_secret;
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -64,11 +52,13 @@ const PaymentForm = (fullName) => {
     });
 
     setIsProcessingPayment(false);
+
     if (paymentResult.error) {
-      alert(paymentResult.error);
+      alert(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
-        alert("payment successful");
+        dispatch(clearCart());
+        navigate("/success");
       }
     }
   };

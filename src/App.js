@@ -18,6 +18,7 @@ const SignUp = lazy(() =>
 );
 const Menu = lazy(() => import("./routes/menu/menu.component"));
 const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
+const Success = lazy(() => import("./routes/success/success.component"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="sign-in" element={<SignInPage />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="success" element={<Success />} />
         </Route>
       </Routes>
     </Suspense>

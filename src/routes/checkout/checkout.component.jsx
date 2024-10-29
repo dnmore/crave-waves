@@ -82,6 +82,7 @@ const Checkout = () => {
         {cartItems.map((cartItem) => (
           <CheckoutCard key={cartItem.id} cartItem={cartItem} />
         ))}
+         <span>TOTAL: €{cartTotal.toFixed(2)}</span>
       </CheckoutBody>
       <CheckoutDetails>
         <h3>CONFIRM YOUR DETAILS</h3>
@@ -165,7 +166,7 @@ const Checkout = () => {
           </form>
         )}
       </CheckoutDetails>
-      <span>TOTAL: €{cartTotal.toFixed(2)}</span>
+     
     </CheckoutContainer>
   );
 };
