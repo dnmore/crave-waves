@@ -1,4 +1,4 @@
-# 🌊 Cravewaves - Restaurant Application
+# 🍔Cravewaves - Restaurant Application
 
 ## Overview
 
