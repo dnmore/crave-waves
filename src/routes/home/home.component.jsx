@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import hero from "../../assets/crave-hero.png";
+import hero from "../../assets/crave-hero.webp";
 
 import { HeroContainer, HomeContent } from "./home.styles";
 
