@@ -4,12 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/userSlice";
 
+import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/navigation.component";
 import LoadingDots from "./components/loading-dots/loading-dots.component";
 
-const Home = lazy(() => import("./routes/home/home.component"));
-const Navigation = lazy(() =>
-  import("./routes/navigation/navigation.component")
-);
+
 const SignInPage = lazy(() =>
   import("./routes/sign-in-page/sign-in-page.component")
 );
