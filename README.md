@@ -11,9 +11,7 @@ CraveWaves is a responsive, full-stack fictional restaurant application built to
   – Secure Sign-up and Login functionality for personalized experience.
 * **Cart Management** – Add items to the cart with preview of the selected items.
 * **Checkout with total Cost** – Adjust quantities with real-time updates to the total.
-* **Stripe Checkout Integration**:
-  – Smooth, secure payment processing with Stripe, ensuring a trustworthy checkout experience.
-  - Test out Stripe payment features using [Stripe test card details](https://docs.stripe.com/testing).
+* **Stripe Checkout Integration**:  – Smooth, secure payment processing with Stripe, ensuring a trustworthy checkout experience.
 * **Protected Routes** - Access to checkout only for authenticated users.
 * **Responsive Design** – Optimized for mobile, tablet, and desktop screens.
 * **Framer Motion Animations** - Enjoy smooth page transitions and responsive button effects for a delightful interaction.
