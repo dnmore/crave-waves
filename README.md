@@ -2,18 +2,21 @@
 
 ## Overview
 
-CraveWaves is a responsive, full-stack restaurant application built to provide users with an engaging, streamlined dining experience online. Developed with a modern tech stack of React, Firebase, and Redux, the app offers a user-friendly interface and robust functionality, allowing users to browse a dynamic menu, authenticate, manage their cart, and securely complete transactions through Stripe integration. Enhanced with Framer Motion animations, CraveWaves combines aesthetics and functionality to deliver an impactful user experience.
-
-![Preview](/preview.PNG)
-
+CraveWaves is a responsive, full-stack fictional restaurant application built to provide users with an engaging, streamlined dining experience online. Developed with a modern tech stack of React, Firebase, and Redux, the app offers a user-friendly interface and robust functionality, allowing users to browse a dynamic menu, authenticate, manage their cart, and securely complete transactions through Stripe integration. Enhanced with Framer Motion animations, CraveWaves combines aesthetics and functionality to deliver an impactful user experience.
 
 ## 🚀 Features
 
 * **Explore the Menu** – Easily browse a curated menu with a range of delectable dishes.
-* **User Authentication** – Secure Sign-up and Login functionality for personalized experience.
-* **Cart Management** – Add items to the cart with preview of the selected items
-* **Checkout with total Cost** – Adjust quantities with real-time updates to the total
-* **Stripe Checkout Integration** – Smooth, secure payment processing with Stripe, ensuring a trustworthy checkout experience.
+* **User Authentication**:
+  – Secure Sign-up and Login functionality for personalized experience.
+  - Live testing credentials:
+[REDACTED]
+[REDACTED]
+* **Cart Management** – Add items to the cart with preview of the selected items.
+* **Checkout with total Cost** – Adjust quantities with real-time updates to the total.
+* **Stripe Checkout Integration**:
+  – Smooth, secure payment processing with Stripe, ensuring a trustworthy checkout experience.
+  - Test out Stripe payment features using [Stripe test card details](https://docs.stripe.com/testing).
 * **Protected Routes** - Access to checkout only for authenticated users.
 * **Responsive Design** – Optimized for mobile, tablet, and desktop screens.
 * **Framer Motion Animations** - Enjoy smooth page transitions and responsive button effects for a delightful interaction.
@@ -24,11 +27,11 @@ CraveWaves is a responsive, full-stack restaurant application built to provide u
 * `React`– A powerful front-end library for building user interfaces.
 * `SASS` –  CSS preprocessor for modular and scalable styling.
 * `Redux` - State management for efficiently handling global app state.
-* `Framer Motion` - For smooth page transitions and button hover/active effects
-* `Firebase`– Backend as a service for authentication and database
+* `Framer Motion` - For smooth page transitions and button hover/active effects.
+* `Firebase`– Backend as a service for authentication and database.
 * `Stripe API` – Integrated payment processing for a secure and reliable checkout.
-* `Styled Components`– Custom styling for React components with scoped and reusable styles
-* `Hamburger-React` - A sleek, animated hamburger menu component for mobile navigation
+* `Styled Components`– Custom styling for React components with scoped and reusable styles.
+* `Hamburger-React` - A sleek, animated hamburger menu component for mobile navigation.
 * `React-icons` – A robust library of icons for visually cohesive and intuitive navigation.
 * `dotenv` – Secure environment variable management.
 
