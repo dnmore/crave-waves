@@ -9,9 +9,6 @@ CraveWaves is a responsive, full-stack fictional restaurant application built to
 * **Explore the Menu** – Easily browse a curated menu with a range of delectable dishes.
 * **User Authentication**:
   – Secure Sign-up and Login functionality for personalized experience.
-  - Live testing credentials:
-[REDACTED]
-[REDACTED]
 * **Cart Management** – Add items to the cart with preview of the selected items.
 * **Checkout with total Cost** – Adjust quantities with real-time updates to the total.
 * **Stripe Checkout Integration**:
