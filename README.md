@@ -2,7 +2,9 @@
 
 ## Overview
 
-CraveWaves is a responsive, full-stack fictional restaurant application built to provide users with an engaging, streamlined dining experience online. Developed with a modern tech stack of React, Firebase, and Redux, the app offers a user-friendly interface and robust functionality, allowing users to browse a dynamic menu, authenticate, manage their cart, and securely complete transactions through Stripe integration. Enhanced with Framer Motion animations, CraveWaves combines aesthetics and functionality to deliver an impactful user experience.
+CraveWaves is a responsive, full-stack fictional restaurant application built to provide users with an engaging, streamlined dining experience online. Developed with a modern tech stack of React, Firebase, and Redux, the app offers a user-friendly interface and robust functionality, allowing users to browse a dynamic menu, authenticate, manage their cart, and securely complete transactions through Stripe integration. CraveWaves provides a seamless and delightful user experience enriched with Framer Motion animations.
+
+
 
 ## 🚀 Features
 
