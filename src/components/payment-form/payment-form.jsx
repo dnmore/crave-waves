@@ -6,11 +6,30 @@ import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { clearCart } from "../../store/cart/cartSlice";
-import { FormContainer } from "./payment-form.styles";
+import { FormContainer, CardElementWrapper } from "./payment-form.styles";
+
+const cardStyle = {
+  style: {
+    base: {
+      color: "#32325d",
+      fontFamily: "'Helvetica Neue', Helvetica, sans-serif",
+      fontSize: "16px",
+      fontSmoothing: "antialiased",
+      "::placeholder": {
+        color: "#aab7c4",
+      },
+    },
+    invalid: {
+      color: "#fa755a",
+      iconColor: "#fa755a",
+    },
+  },
+};
 
 const PaymentForm = ({ fullName }) => {
   const amount = useSelector((state) => state.cart.cartTotal);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentError, setPaymentError] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,16 +46,13 @@ const PaymentForm = ({ fullName }) => {
     setIsProcessingPayment(true);
     const convertedAmount = Math.round(amount * 100);
 
-    const response = await fetch(
-      "/.netlify/functions/create-payment-intent",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: convertedAmount }),
-      }
-    ).then((res) => {
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: convertedAmount }),
+    }).then((res) => {
       return res.json();
     });
 
@@ -54,7 +70,7 @@ const PaymentForm = ({ fullName }) => {
     setIsProcessingPayment(false);
 
     if (paymentResult.error) {
-      alert(paymentResult.error.message);
+      setPaymentError(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         dispatch(clearCart());
@@ -65,13 +81,17 @@ const PaymentForm = ({ fullName }) => {
 
   return (
     <FormContainer onSubmit={paymentHandler}>
-      <CardElement />
+      <CardElementWrapper>
+        <CardElement options={cardStyle} />
+      </CardElementWrapper>
+
       <Button
         isLoading={isProcessingPayment}
         buttonType={BUTTON_TYPE_CLASSES.primary}
       >
         PAY NOW
       </Button>
+      {paymentError && <div style={{ color: "#fa755a" }}>{paymentError}</div>}
     </FormContainer>
   );
 };
