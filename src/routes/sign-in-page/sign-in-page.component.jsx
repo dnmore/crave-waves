@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-[REDACTED]
+import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
 
@@ -17,10 +17,8 @@ const initialFormFields = {
 };
 
 const initialErrors = {
-  displayName: "",
   email: "",
   password: "",
-[REDACTED]
 };
 
 const SignInPage = () => {
@@ -45,10 +43,8 @@ const SignInPage = () => {
   const validateFields = () => {
     const newErrors = { ...initialErrors };
 
-[REDACTED]
-[REDACTED]
-    else if (password.length < 8)
-[REDACTED]
+    if (!email) newErrors.email = "Email is required";
+    else if (!password) newErrors.password = "Password is required";
 
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => error === "");
@@ -60,8 +56,7 @@ const SignInPage = () => {
     if (!validateFields()) return;
 
     try {
-[REDACTED]
-
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
       navigate("/");
     } catch (error) {
@@ -90,7 +85,7 @@ const SignInPage = () => {
       <p>Sign in with your email and password</p>
       <form onSubmit={handleSubmit}>
         <FormInput
-[REDACTED]
+          label="Email"
           type="email"
           onChange={handleChangeHandler}
           name="email"
@@ -102,7 +97,7 @@ const SignInPage = () => {
         {errors.email && <span>{errors.email}</span>}
 
         <FormInput
-[REDACTED]
+          label="Password"
           type="password"
           onChange={handleChangeHandler}
           name="password"

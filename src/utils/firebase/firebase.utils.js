@@ -3,8 +3,8 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-[REDACTED]
-[REDACTED]
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
   
@@ -105,17 +105,17 @@ export const createUserDocumentFromAuth = async (
 };
 
 // Create a new user with email and password
-[REDACTED]
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
-[REDACTED]
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 // Sign in user with email and password
-[REDACTED]
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
-[REDACTED]
+  return await signInWithEmailAndPassword(auth, email, password);
 };
 
 // Sign out the user

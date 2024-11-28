@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
-[REDACTED]
+  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-  
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
@@ -22,22 +21,21 @@ const initialFormFields = {
   displayName: "",
   email: "",
   password: "",
-[REDACTED]
+  confirmPassword: "",
 };
 
 const initialErrors = {
   displayName: "",
   email: "",
   password: "",
-[REDACTED]
+  confirmPassword: "",
 };
 
 const SignUp = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
-[REDACTED]
+  const { displayName, email, password, confirmPassword } = formFields;
   const [errors, setErrors] = useState(initialErrors);
   const navigate = useNavigate();
-  
 
   const variants = {
     error: {
@@ -56,14 +54,14 @@ const SignUp = () => {
     const newErrors = { ...initialErrors };
 
     if (!displayName) newErrors.displayName = "Display name is required";
-[REDACTED]
-[REDACTED]
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     else if (password.length < 8)
-[REDACTED]
-[REDACTED]
-[REDACTED]
-[REDACTED]
-[REDACTED]
+      newErrors.password = "Password must be minimum 8 characters";
+    if (!confirmPassword)
+      newErrors.confirmPassword = "Please confirm your password";
+    else if (password !== confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
 
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => error === "");
@@ -75,14 +73,13 @@ const SignUp = () => {
     if (!validateFields()) return; // Don't proceed if validation fails
 
     try {
-[REDACTED]
+      const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
-     
+
       await createUserDocumentFromAuth(user, { displayName });
 
-      
       resetFormFields();
       navigate("/");
     } catch (error) {
@@ -130,7 +127,7 @@ const SignUp = () => {
           </InputWrapper>
           <InputWrapper>
             <FormInput
-[REDACTED]
+              label="Email"
               type="email"
               onChange={handleChange}
               name="email"
@@ -145,7 +142,7 @@ const SignUp = () => {
         <FormControl>
           <InputWrapper>
             <FormInput
-[REDACTED]
+              label="Password"
               type="password"
               onChange={handleChange}
               name="password"
@@ -158,16 +155,16 @@ const SignUp = () => {
           </InputWrapper>
           <InputWrapper>
             <FormInput
-[REDACTED]
+              label="Confirm Password"
               type="password"
               onChange={handleChange}
-[REDACTED]
-[REDACTED]
-[REDACTED]
+              name="confirmPassword"
+              value={confirmPassword}
+              animate={errors.confirmPassword ? "error" : "valid"}
               variants={variants}
               transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
-[REDACTED]
+            {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
           </InputWrapper>
         </FormControl>
 
