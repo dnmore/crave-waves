@@ -64,7 +64,7 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validateFields()) return; // Don't proceed if validation fails
+    if (!validateFields()) return; 
     setDetailsSaved(true);
   };
 
@@ -72,7 +72,7 @@ const Checkout = () => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
 
-    // Clear error when user starts typing in a specific field
+    
     setErrors({ ...errors, [name]: "" });
   };
 

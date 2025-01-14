@@ -10,12 +10,6 @@ export const ProductCardContainer = styled(motion.div)`
   overflow: hidden;
   border: 1px solid #e0e0e0;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    
-    
-  }
 `;
 
 export const ProductImage = styled.div`
