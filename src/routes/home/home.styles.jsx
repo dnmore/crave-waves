@@ -2,29 +2,24 @@ import styled from "styled-components";
 
 export const HeroContainer = styled.div`
   position: relative;
-  padding: 4rem 0;
   height: 50vh;
 
   @media (min-width: 1024px) {
-   
     height: 100vh;
   }
-  
-  
 
-   img {
-    object-fit: cover;
+  .background-image {
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
+    background-size: cover;
+    background-position: center;
   }
 `;
 
 export const HomeContent = styled.div`
-height: 50vh;
+  height: 50vh;
   width: 100%;
-   background-color: #4caf50;
+  background-color: #4caf50;
   color: #fff;
   padding: 2rem 1rem;
   text-align: center;
@@ -32,7 +27,7 @@ height: 50vh;
   place-items: center;
 
   @media (min-width: 1024px) {
-   height: 100vh;
+    height: 100vh;
     padding: 4rem 6rem;
   }
   h3 {
@@ -50,4 +45,3 @@ height: 50vh;
     font-size: 35px;
   }
 `;
-
