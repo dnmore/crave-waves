@@ -84,7 +84,7 @@ const Checkout = () => {
         ))}
       </CheckoutBody>
       <CheckoutDetails>
-        <h3>YOUR DETAILS</h3>
+        <h3>ENTER YOUR DETAILS</h3>
         {detailsSaved ? (
           <>
             <CheckoutAddress>
@@ -100,7 +100,7 @@ const Checkout = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.5 }}
             >
-              <h3>PAYMENT</h3>
+              <h3>ENTER PAYMENT DETAILS</h3>
               <PaymentForm fullName={fullName} />
             </CheckoutPayment>
           </>
