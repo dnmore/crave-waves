@@ -2,18 +2,20 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const CheckoutContainer = styled.div`
-  padding: 8rem 0 2rem 0;
-  text-align: center;
+  margin: 8rem 0 2rem 0;
+  display: grid;
+  place-items: center;
 
-  @media screen and (min-width: 768px) {
-    padding: 8rem 5rem;
+  .total {
+    font-size: 30px;
+    font-weight: bold;
   }
 `;
 export const CheckoutBody = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  margin-bottom: 30px;
+  margin: 2rem 0;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -24,16 +26,13 @@ export const CheckoutDetails = styled.div`
   display: grid;
   place-items: center;
   padding: 1rem;
+  gap: 20px;
 
   span {
     color: #e94a8a;
     display: block;
     margin: -10px 0 10px 0;
     font-size: 13px;
-  }
-
-  @media screen and (min-width: 768px) {
-    place-items: start;
   }
 `;
 
@@ -60,9 +59,5 @@ export const CheckoutPayment = styled(motion.div)`
   span {
     font-weight: bold;
     font-size: 16px;
-  }
-
-  @media screen and (min-width: 768px) {
-    place-items: start;
   }
 `;

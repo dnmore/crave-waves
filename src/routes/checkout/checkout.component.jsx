@@ -64,7 +64,7 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validateFields()) return; 
+    if (!validateFields()) return;
     setDetailsSaved(true);
   };
 
@@ -72,20 +72,19 @@ const Checkout = () => {
     const { name, value } = e.target;
     setFormFields({ ...formFields, [name]: value });
 
-    
     setErrors({ ...errors, [name]: "" });
   };
 
   return (
     <CheckoutContainer>
+      <span className="total">TOTAL: €{cartTotal.toFixed(2)}</span>
       <CheckoutBody>
         {cartItems.map((cartItem) => (
           <CheckoutCard key={cartItem.id} cartItem={cartItem} />
         ))}
-         <span>TOTAL: €{cartTotal.toFixed(2)}</span>
       </CheckoutBody>
       <CheckoutDetails>
-        <h3>CONFIRM YOUR DETAILS</h3>
+        <h3>YOUR DETAILS</h3>
         {detailsSaved ? (
           <>
             <CheckoutAddress>
@@ -95,11 +94,13 @@ const Checkout = () => {
               <p>{city}</p>
               <p>{state}</p>
             </CheckoutAddress>
+
             <CheckoutPayment
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.5 }}
             >
+              <h3>PAYMENT</h3>
               <PaymentForm fullName={fullName} />
             </CheckoutPayment>
           </>
@@ -166,7 +167,6 @@ const Checkout = () => {
           </form>
         )}
       </CheckoutDetails>
-     
     </CheckoutContainer>
   );
 };

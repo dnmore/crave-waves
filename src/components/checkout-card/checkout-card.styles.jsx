@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const CheckoutCardContainer = styled.div`
   width: 100%;
   max-width: 300px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   color: #333333;
@@ -52,7 +51,7 @@ export const QuantityActions = styled.div`
   p {
     background-color: transparent;
     color: #333333;
-    font-size: 20px;
+    font-size: 18px;
     border: 2px solid #333333;
     padding: 2px 15px;
     border-radius: 20px;
