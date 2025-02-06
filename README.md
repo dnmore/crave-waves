@@ -22,6 +22,7 @@ CraveWaves is a responsive, full-stack fictional restaurant application built to
 ## 🛠️ Tech Stack
 
 * `React`– A powerful front-end library for building user interfaces.
+* `TypeScript` – Enhances the project with static typing, improving code quality and maintainability.
 * `SASS` –  CSS preprocessor for modular and scalable styling.
 * `Redux` - State management for efficiently handling global app state.
 * `Framer Motion` - For smooth page transitions and button hover/active effects.
