@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, FormEvent, ChangeEvent } from "react";
+
+import { useAppSelector } from "../../store/hooks";
 import FormInput from "../../components/form-input/form-input.component";
 import CheckoutCard from "../../components/checkout-card/checkout-card.component";
 import PaymentForm from "../../components/payment-form/payment-form";
@@ -31,20 +32,12 @@ const initialErrors = {
 };
 
 const Checkout = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const cartTotal = useSelector((state) => state.cart.cartTotal);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const cartTotal = useAppSelector((state) => state.cart.cartTotal);
   const [formFields, setFormFields] = useState(initialFormFields);
   const { fullName, address, postalCode, city, state } = formFields;
   const [errors, setErrors] = useState(initialErrors);
   const [detailsSaved, setDetailsSaved] = useState(false);
-
-  const variants = {
-    error: {
-      borderColor: "#E94A8A",
-      x: [-10, 0, 10, 0],
-    },
-    valid: { borderColor: "#282925" },
-  };
 
   const validateFields = () => {
     const newErrors = { ...initialErrors };
@@ -61,15 +54,15 @@ const Checkout = () => {
     return Object.values(newErrors).every((error) => error === "");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (!validateFields()) return;
     setDetailsSaved(true);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
 
     setErrors({ ...errors, [name]: "" });
@@ -112,9 +105,6 @@ const Checkout = () => {
               value={fullName}
               onChange={handleChange}
               name="fullName"
-              animate={errors.fullName ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.fullName && <span>{errors.fullName}</span>}
             <FormInput
@@ -123,9 +113,6 @@ const Checkout = () => {
               value={address}
               onChange={handleChange}
               name="address"
-              animate={errors.address ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.address && <span>{errors.address}</span>}
             <FormInput
@@ -134,9 +121,6 @@ const Checkout = () => {
               value={postalCode}
               onChange={handleChange}
               name="postalCode"
-              animate={errors.postalCode ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.postalCode && <span>{errors.postalCode}</span>}
             <FormInput
@@ -145,9 +129,6 @@ const Checkout = () => {
               value={city}
               onChange={handleChange}
               name="city"
-              animate={errors.city ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.city && <span>{errors.city}</span>}
             <FormInput
@@ -156,9 +137,6 @@ const Checkout = () => {
               value={state}
               onChange={handleChange}
               name="state"
-              animate={errors.state ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.state && <span>{errors.state}</span>}
             <Button buttonType={BUTTON_TYPE_CLASSES.primary} type="submit">

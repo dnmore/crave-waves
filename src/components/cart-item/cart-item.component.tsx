@@ -1,7 +1,12 @@
 import { CartItemContainer } from "./cart-item.styles";
+import type { CartItem } from "../../types/definitions";
+
+type CartItemProps = {
+  cartItem: CartItem
+}
 
 
-const CartItem = ({ cartItem }) => {
+const CartProduct = ({ cartItem } : CartItemProps) => {
   const { name, quantity, price } = cartItem;
   return (
     <CartItemContainer>
@@ -13,4 +18,4 @@ const CartItem = ({ cartItem }) => {
   );
 };
 
-export default CartItem;
+export default CartProduct;

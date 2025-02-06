@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { clearCart } from "../../store/cart/cartSlice";
 import { FormContainer, CardElementWrapper } from "./payment-form.styles";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { StripeCardElement } from "@stripe/stripe-js";
 
 const cardStyle = {
   style: {
@@ -26,18 +25,22 @@ const cardStyle = {
   },
 };
 
-const PaymentForm = ({ fullName }) => {
-  const amount = useSelector((state) => state.cart.cartTotal);
+type PaymentFormProps = {
+  fullName: string;
+};
+
+const PaymentForm = ({ fullName }: PaymentFormProps) => {
+  const amount = useAppSelector((state) => state.cart.cartTotal);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const [paymentError, setPaymentError] = useState(null);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const stripe = useStripe();
   const elements = useElements();
 
-  const paymentHandler = async (e) => {
-    e.preventDefault();
+  const paymentHandler = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (!stripe || !elements) {
       return;
@@ -60,7 +63,7 @@ const PaymentForm = ({ fullName }) => {
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: elements.getElement(CardElement) as StripeCardElement,
         billing_details: {
           name: fullName,
         },
@@ -70,7 +73,9 @@ const PaymentForm = ({ fullName }) => {
     setIsProcessingPayment(false);
 
     if (paymentResult.error) {
-      setPaymentError(paymentResult.error.message);
+      setPaymentError(
+        paymentResult.error.message ?? "An error occurred during payment."
+      );
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         dispatch(clearCart());

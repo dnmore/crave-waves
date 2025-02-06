@@ -1,12 +1,8 @@
 import { useClickAway } from "react-use";
-import { useState,useRef } from "react";
-import { useSelector, } from "react-redux";
-
+import { useState, useRef } from "react";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-
 import { Squeeze as Hamburger } from "hamburger-react";
 
 import {
@@ -16,17 +12,17 @@ import {
   Logo,
   NavLinks,
   NavLink,
+  Signout,
 } from "./nav-mobile.styles";
+import { useAppSelector } from "../../store/hooks";
 
 const NavMobile = () => {
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const isCartOpen = useAppSelector((state) => state.cart.isCartOpen);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const ref = useRef(null);
-  
-  useClickAway(ref, () => setDropdownOpen(false));
 
-  
+  useClickAway(ref, () => setDropdownOpen(false));
 
   return (
     <MobileMenuContainer ref={ref}>
@@ -46,12 +42,9 @@ const NavMobile = () => {
             <NavLink to={"/menu"}>Menu</NavLink>
             {currentUser ? (
               <>
-              <NavLink to={"/checkout"}>Checkout</NavLink>
-               <NavLink as="span" onClick={signOutUser}>
-                 Sign Out
-               </NavLink>
-              
-             </>
+                <NavLink to={"/checkout"}>Checkout</NavLink>
+                <Signout onClick={signOutUser}>Sign Out</Signout>
+              </>
             ) : (
               <>
                 <NavLink to={"/sign-in"}>Sign In</NavLink>

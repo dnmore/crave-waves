@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import CartItem from "../cart-item/cart-item.component";
+
+import CartProduct from "../cart-item/cart-item.component";
 import { CartDropdownContainer, CartItems } from "./cart-dropdown.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useAppSelector } from "../../store/hooks";
 
 const CartDropdown = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const currentUser = useSelector((state) => state.user.currentUser)
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const currentUser = useAppSelector((state) => state.user.currentUser)
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
@@ -22,7 +23,7 @@ const CartDropdown = () => {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
+          cartItems.map((item) => <CartProduct key={item.id} cartItem={item} />)
         ) : (
           <p>Empty</p>
         )}

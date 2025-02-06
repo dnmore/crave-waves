@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -29,6 +30,7 @@ const initialErrors = {
   email: "",
   password: "",
   confirmPassword: "",
+  form: "",
 };
 
 const SignUp = () => {
@@ -36,14 +38,6 @@ const SignUp = () => {
   const { displayName, email, password, confirmPassword } = formFields;
   const [errors, setErrors] = useState(initialErrors);
   const navigate = useNavigate();
-
-  const variants = {
-    error: {
-      borderColor: "#E94A8A",
-      x: [-10, 0, 10, 0],
-    },
-    valid: { borderColor: "#282925" },
-  };
 
   const resetFormFields = () => {
     setFormFields(initialFormFields);
@@ -67,42 +61,50 @@ const SignUp = () => {
     return Object.values(newErrors).every((error) => error === "");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    if (!validateFields()) return; // Don't proceed if validation fails
+    if (!validateFields()) return;
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
+      const userCredential = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
+
+      if (!userCredential || !userCredential.user) {
+        throw new Error("User creation failed");
+      }
+      const { user } = userCredential;
 
       await createUserDocumentFromAuth(user, { displayName });
 
       resetFormFields();
       navigate("/");
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          email: "Cannot create user, email already in use",
-        }));
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: "Cannot create user, email already in use",
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            form: "An error occurred, please try again later",
+          }));
+          console.log("User creation encountered an error", error);
+        }
       } else {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          form: "An error occurred, please try again later",
-        }));
-        console.log("User creation encountered an error", error);
+        console.log("An unknown error occurred:", error);
       }
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
 
-    // Clear error when user starts typing in a specific field
     setErrors({ ...errors, [name]: "" });
   };
 
@@ -119,9 +121,6 @@ const SignUp = () => {
               onChange={handleChange}
               name="displayName"
               value={displayName}
-              animate={errors.displayName ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.displayName && <span>{errors.displayName}</span>}
           </InputWrapper>
@@ -132,9 +131,6 @@ const SignUp = () => {
               onChange={handleChange}
               name="email"
               value={email}
-              animate={errors.email ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.email && <span>{errors.email}</span>}
           </InputWrapper>
@@ -147,9 +143,6 @@ const SignUp = () => {
               onChange={handleChange}
               name="password"
               value={password}
-              animate={errors.password ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.password && <span>{errors.password}</span>}
           </InputWrapper>
@@ -160,9 +153,6 @@ const SignUp = () => {
               onChange={handleChange}
               name="confirmPassword"
               value={confirmPassword}
-              animate={errors.confirmPassword ? "error" : "valid"}
-              variants={variants}
-              transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
             />
             {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
           </InputWrapper>

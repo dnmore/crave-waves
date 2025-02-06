@@ -1,4 +1,4 @@
-import React from "react";
+
 import { MdDeliveryDining } from "react-icons/md";
 import { FaGripLines } from "react-icons/fa";
 import { SuccessContainer, IconContainer } from "./success.styles";

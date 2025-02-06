@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
@@ -9,11 +7,13 @@ import {
   Logo,
   NavLinks,
   NavLink,
+  Signout,
 } from "./nav-desktop.styles";
+import { useAppSelector } from "../../store/hooks";
 
 const NavDesktop = () => {
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const isCartOpen = useAppSelector((state) => state.cart.isCartOpen);
 
   return (
     <NavigationDesktopContainer>
@@ -23,11 +23,8 @@ const NavDesktop = () => {
         <NavLink to={"/menu"}>Menu</NavLink>
         {currentUser ? (
           <>
-           <NavLink to={"/checkout"}>Checkout</NavLink>
-            <NavLink as="span" onClick={signOutUser}>
-              Sign Out
-            </NavLink>
-           
+            <NavLink to={"/checkout"}>Checkout</NavLink>
+            <Signout onClick={signOutUser}>Sign Out</Signout>
           </>
         ) : (
           <>

@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/cart/cartSlice";
+import { CategoryItem } from "../../types/definitions";
 
 import {
   ProductCardContainer,
@@ -8,10 +8,15 @@ import {
 } from "./product-card.styles";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useAppDispatch } from "../../store/hooks";
 
-const ProductCard = ({ product }) => {
+type ProductCardProps = {
+  product: CategoryItem
+}
+
+const ProductCard = ({ product } : ProductCardProps) => {
   const { name, price, imageUrl } = product;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const addProductToCart = () => dispatch(addItemToCart(product));
 

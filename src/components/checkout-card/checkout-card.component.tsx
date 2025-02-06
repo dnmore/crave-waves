@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+
 import {
   addItemToCart,
   removeItemFromCart,
@@ -6,6 +6,7 @@ import {
 } from "../../store/cart/cartSlice";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
+import type { CartItem } from "../../types/definitions";
 
 import {
   CheckoutCardContainer,
@@ -14,11 +15,16 @@ import {
   QuantityActions,
   QuantityButton,
 } from "./checkout-card.styles";
+import { useAppDispatch } from "../../store/hooks";
 
-const CheckoutCard = ({ cartItem }) => {
+type CheckoutCardProps = {
+  cartItem: CartItem
+}
+
+const CheckoutCard = ({ cartItem } : CheckoutCardProps ) => {
   const { name, quantity, imageUrl, price } = cartItem;
  
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <CheckoutCardContainer>
       <CheckoutCardImage>

@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
-
+import { FirebaseError } from "firebase/app";
 import FormInput from "../../components/form-input/form-input.component";
-
 import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../../components/button/button.component";
 import SignInGoogle from "../../components/google-sign-in/google-sign-in.component";
-
 import { SignInContainer } from "./sign-in-page.styles";
 
 const initialFormFields = {
@@ -27,14 +25,6 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState(initialErrors);
 
-  const variants = {
-    error: {
-      borderColor: "#E94A8A",
-      x: [-10, 0, 10, 0],
-    },
-    valid: { borderColor: "#282925" },
-  };
-
   const resetFormFields = () => {
     setFormFields(initialFormFields);
     setErrors(initialErrors);
@@ -50,8 +40,8 @@ const SignInPage = () => {
     return Object.values(newErrors).every((error) => error === "");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (!validateFields()) return;
 
@@ -60,20 +50,24 @@ const SignInPage = () => {
       resetFormFields();
       navigate("/");
     } catch (error) {
-      if (error.code === "auth/invalid-credential") {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          email: "incorrect email or password",
-          password: "incorrect email or password",
-        }));
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/invalid-credential") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: "incorrect email or password",
+            password: "incorrect email or password",
+          }));
+        } else {
+          console.log(error);
+        }
       } else {
-        console.log(error);
+        console.log("An unknown error occurred:", error);
       }
     }
   };
 
-  const handleChangeHandler = (e) => {
-    const { name, value } = e.target;
+  const handleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
@@ -90,9 +84,6 @@ const SignInPage = () => {
           onChange={handleChangeHandler}
           name="email"
           value={email}
-          animate={errors.email ? "error" : "valid"}
-          variants={variants}
-          transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
         />
         {errors.email && <span>{errors.email}</span>}
 
@@ -102,9 +93,6 @@ const SignInPage = () => {
           onChange={handleChangeHandler}
           name="password"
           value={password}
-          animate={errors.password ? "error" : "valid"}
-          variants={variants}
-          transition={{ type: "spring", bounce: 0.75, duration: 0.8 }}
         />
         {errors.password && <span>{errors.password}</span>}
 
