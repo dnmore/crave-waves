@@ -11,21 +11,17 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { useAppDispatch } from "../../store/hooks";
 
 type ProductCardProps = {
-  product: CategoryItem
-}
+  product: CategoryItem;
+};
 
-const ProductCard = ({ product } : ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { name, price, imageUrl } = product;
   const dispatch = useAppDispatch();
 
   const addProductToCart = () => dispatch(addItemToCart(product));
 
   return (
-    <ProductCardContainer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.5 }}
-    >
+    <ProductCardContainer>
       <ProductImage>
         <img src={imageUrl} alt={`${name}`} />
       </ProductImage>

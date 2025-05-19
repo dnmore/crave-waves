@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
-export const ProductCardContainer = styled(motion.div)`
+export const ProductCardContainer = styled.div`
   width: 100%;
-  height: 350px;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
   margin: 5px auto;
