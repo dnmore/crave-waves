@@ -1,15 +1,9 @@
-import hero from "../../assets/hero.webp";
 import { HeroContainer, HomeContent } from "./home.styles";
 
 const Home = () => {
   return (
     <>
-      <HeroContainer>
-        <div
-          className="background-image"
-          style={{ backgroundImage: `url(${hero})` }}
-        ></div>
-      </HeroContainer>
+      <HeroContainer></HeroContainer>
       <HomeContent>
         <div>
           <h3>Explore Our Flavor Packed Menu</h3>
