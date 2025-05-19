@@ -8,45 +8,40 @@ export const PrimaryButton = styled(motion.button)`
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: #f5f5f5;
-  color: #4caf50;
+  background-color: #333333;
+  color: #f5f5f5;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
   font-weight: bolder;
-  border: 2px solid #4caf50;
+  border: 2px solid #333333;
   cursor: pointer;
   display: flex;
   justify-content: center;
-  transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
 
   &:hover {
-    background-color: #4caf50;
-    color: #f5f5f5;
+    opacity: 0.8;
   }
-
-  
 `;
 
 export const GoogleSignInButton = styled(PrimaryButton)`
-  background-color: #f5f5f5;
-  border: 2px solid #4285f4;
-  color: #4285f4;
+  background-color: #0247b6;
+  border: 2px solid #0247b6;
+  color: #f5f5f5;
 
   &:hover {
-    background-color: #4285f4;
-    color: #f5f5f5;
+    opacity: 0.8;
   }
 `;
 
 export const AccentButton = styled(PrimaryButton)`
-  background-color: #f5f5f5;
-  border: 2px solid #ff7043;
-  color: #ff7043;
+  background-color: #9c2602;
+  border: 2px solid #9c2602;
+  color: #f5f5f5;
   width: auto;
 
   &:hover {
-    background-color: #ff7043;
-    color: #f5f5f5;
+    opacity: 0.8;
   }
 `;
 
