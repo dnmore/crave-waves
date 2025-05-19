@@ -19,7 +19,7 @@ export const HeroContainer = styled.div`
 export const HomeContent = styled.div`
   height: 50vh;
   width: 100%;
-  background-color: #4caf50;
+  background-color: #0A7510;
   color: #fff;
   padding: 2rem 1rem;
   text-align: center;

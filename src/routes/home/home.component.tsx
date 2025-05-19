@@ -1,4 +1,4 @@
-import hero from "../../assets/crave-hero.webp";
+import hero from "../../assets/hero.webp";
 import { HeroContainer, HomeContent } from "./home.styles";
 
 const Home = () => {
