@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ProductCardContainer = styled.div`
+export const ProductCardContainer = styled(motion.div)`
   width: 100%;
   max-width: 30rem;
   display: flex;
